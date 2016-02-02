@@ -1,4 +1,6 @@
 .jumbotron h1 {
-  font-size: 55px;
-  color: ffff;
+  color: #fff;
+  font-size: 48px;  
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
 }
