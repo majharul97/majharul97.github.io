@@ -1,0 +1,21 @@
+body {
+  padding:1em;
+  background-color:#000;
+}
+input.search {
+  font-size:3em;
+  -webkit-appearance:none;
+  apperance:none;
+  box-shadow:none;
+  outline:none;
+  margin:0 auto;
+position:absolute;
+  left:50%;
+  background:none;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border:none;
+  color:#fff;
+  font-weight:bold;
+  border-bottom:0.1em solid #fff;
+}
