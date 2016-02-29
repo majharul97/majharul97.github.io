@@ -1,7 +1,4 @@
-/* 
-SETTINGS
-If you need the loader go faster or slower, this is the place to change. Don't forget to update 'time' in the javascript
-*/
+
 @import url("http://fonts.googleapis.com/css?family=Give+You+Glory|Exo:800");
 .loader-container {
   height: 6px;
