@@ -1,0 +1,110 @@
+<html>
+<head><title>Add Customer</title></head>
+<body>
+<form action=""method="post">
+<h2> Add Customer </h2>
+<table border="1" width="400" height="300">
+<tr>
+<td>Customer Information</td>
+</tr>
+<tr>
+<td>CustomerID</td><td><input type="text" customerID="customerID"></td>
+</tr>
+<tr>
+<td>CustomerName</td><td><input type="text" customerName="customerName"></td>
+</tr>
+<tr>
+<td>CustomerSurname</td><td><input type="text" customerSurname="customerSurname"></td>
+</tr>
+<tr>
+<td>CustomerEmail</td><td><input type="text" customerEmail="customerEmail"></td>
+</tr>
+<tr>
+<td>CustomerMobNo</td><td><input type="text" customerMobNo="customerMobNo"></td>
+</tr>
+<tr>
+<td><input type= "submit" name= "submit" value ="submit"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+
+ 
+<?php
+
+$dbhost='elephant.ecs.westminster.ac.uk';
+$dbuser = 'w1594485';
+$dbpass = 'GlV9rXoMNpLw';
+
+$conn= mysql_connect($dbhost, $dbuser, $dbpass);
+if (!$conn)
+{
+	die ('could not connect:'.mysql_error());
+}
+
+mysql_select_db("w1594485_0", $conn);
+
+ 
+	$customerID=$_POST['form_customerID'];
+	$customerName=$_POST['form_customerName'];
+	$customerSurname=$_POST['form_customerSurname'];
+	$customerMobNo=$_POST['form_customerMobNo'];
+
+      
+		
+ if (empty($Customerid) or empty($CustomerName)or empty($CustomerSurname) or empty($CustomerMobNo))
+{
+	echo "<p>Please ensure all mandatory fields are filled in!";
+}
+else
+{
+//if an optional field was not filled in then write sql query without the column       
+	//write SQL query
+	if (empty ($customerName))
+	{
+	$mi_individual_customerSQL = "insert into mi_individual_customer(customerID,custName,custSurname,custMobNo) values (".$CustomerID.",'".$CustomerName."','".$CustomerSurname."')";
+    }
+
+	//if optional was filled in include column in SQL query
+	else
+	{
+		$addmi_individual_customerSQL= "insert into mi_individual_customer(customerID,custName,custSurname,custMobNo) values (".$CustomerID.",'".$CustomerName."','".$CustomerSurname."')";
+	}
+
+	//run SQL query
+	$exeaddmi_individual_customerSQL=mySQL_query($addmi_individual_customerSQL);
+	
+	//check error code and error message, can be commented out later
+	//echo "<p>Error code: ".mysql_errno($conn);
+	//echo "<br>Error msg: ".mysql_error($conn);
+	
+	//if error code is 0 then display confirmation message
+	if (mysql_errno($conn)==0)
+	{ 
+		echo "<p>A new customer has been added successfully";
+		echo "<p>Added customer id: ".$customerID;
+		echo "<br>Added customer name: ".$customerName;
+		echo "<br>Added customer surname: ".$customerSurname;
+		echo "<br>Added customer number: ".$customerMobNo;
+	}
+	//else check individual error codes and display appropriate message
+	else
+	{
+
+	echo "<p>There is an error with the location you entered.";
+		//error code for breach of PK or unique constraint
+		if (mysql_errno($conn)==1062)
+		{
+			echo "<br>The value entered for the new location id is not valid as it is already used.";			
+		}
+		//error code for inserting character that is problematic for SQL query
+		if (mysql_errno($conn)==1064)
+		{
+			echo "<br>Values entered for the location details are not valid.";			
+		}
+	}
+
+}
+echo "</body>";
+?> 
