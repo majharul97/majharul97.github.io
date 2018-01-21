@@ -4,6 +4,7 @@ $(function() {
     "Majharul Islam",
     "The Man",
     "The Kitchen Chef"
+    "Testing"
   ];
 
   /* <type text simulation> */
