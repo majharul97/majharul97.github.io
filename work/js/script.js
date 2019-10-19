@@ -1,6 +1,7 @@
 var i = 0;
 do {
   i++
+  console.log(i)
   $('.social').hide(function() {
   $(this).delay(12000).fadeIn(800);
 });
