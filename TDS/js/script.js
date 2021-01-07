@@ -1,4 +1,4 @@
-var countdownDate = new Date("Dec 31, 2021 00:00:00").getTime();
+var countdownDate = new Date("May 30, 2021 00:00:00").getTime();
 
 var countdownFunc = window.setInterval(function ( ){
     
